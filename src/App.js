@@ -64,7 +64,7 @@ class ItemsList extends React.Component {
         <ol>
           {
             this.props.items.map(i => {
-              return <div className="item" key={i['key']}>{i['text']}</div>;
+              return <li className="item" key={i['key']}>{i['text']}</li>;
             })
           }
         </ol>
