@@ -16,12 +16,20 @@ class ShoppingList extends React.Component {
     this.state = {
       list: []
     };
+
+    this.handleKeyUp = this.handleKeyUp.bind(this);
+  }
+
+  handleKeyUp(event) {
+    if (event.keyCode === 13) {
+      console.log(event.target.value);
+    }
   }
 
   render() {
       return (
         <div id="shopping-list">
-          <ItemEntry />
+          <ItemEntry handleKeyUp={this.handleKeyUp} />
           <ItemsList items={this.state.list} />
         </div>
       );
@@ -32,7 +40,7 @@ class ItemEntry extends React.Component {
   render() {
     return (
       <div id="item-entry">
-        <input type="text" value="Item" />
+        <input type="text" placeholder="Item" onKeyUp={(e) => this.props.handleKeyUp(e)} />
       </div>
     );
   }
