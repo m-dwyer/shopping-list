@@ -22,10 +22,19 @@ class ShoppingList extends React.Component {
 
   handleKeyUp(event) {
     if (event.keyCode === 13) {
-      this.setState({
-        list: this.state.list.concat(event.target.value)
-      });
+      this.addItem(event.target.value);
     }
+  }
+
+  addItem(item) {
+    let newItem = {
+      key: Date.now(),
+      text: item
+    };
+
+    this.setState({
+      list: this.state.list.concat(newItem)
+    });
   }
 
   render() {
@@ -55,7 +64,7 @@ class ItemsList extends React.Component {
         <ol>
           {
             this.props.items.map(i => {
-              return <div className="item">{i}</div>;
+              return <div className="item" key={i['key']}>{i['text']}</div>;
             })
           }
         </ol>
