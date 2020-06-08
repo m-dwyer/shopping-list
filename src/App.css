@@ -1,3 +1,11 @@
 .app {
   text-align: center;
 }
+
+.item-1 {
+  background-color:hsl(0, 0%, 100%);
+}
+
+.item-2 {
+  background-color: hsl(0, 0%, 90%);
+}

@@ -77,11 +77,14 @@ class ItemsList extends React.Component {
       <div id="items">
         <ol>
           {
-            Object.entries(this.props.items).map(i => {
+            Object.entries(this.props.items).map((item, idx) => {
+              console.log("idx = ", idx);
+              const itemClass = idx % 2 === 0 ? 'item-1' : 'item-2';
+
               return (
-                <li className="item" key={i[0]}>
-                  {i[1]}
-                  <button value={i[0]} onClick={(e) => this.props.handleDelete(e)}>Delete</button>
+                <li className={itemClass} key={item[0]}>
+                  {item[1]}
+                  <button value={item[0]} onClick={(e) => this.props.handleDelete(e)}>Delete</button>
                 </li>
               );
             })
