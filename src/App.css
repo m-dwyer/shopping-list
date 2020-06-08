@@ -1,11 +1,13 @@
 .app {
-  text-align: center;
+  border-color: black;
+  border: solid 1px black;
+  padding: 10px 100px;
 }
 
-.item-1 {
+.item:nth-child(1) {
   background-color:hsl(0, 0%, 100%);
 }
 
-.item-2 {
+.item:nth-child(2) {
   background-color: hsl(0, 0%, 90%);
 }
