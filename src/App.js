@@ -14,10 +14,11 @@ class ShoppingList extends React.Component {
     super(props);
 
     this.state = {
-      list: []
+      list: {}
     };
 
     this.handleKeyUp = this.handleKeyUp.bind(this);
+    this.handleDelete = this.handleDelete.bind(this);
   }
 
   handleKeyUp(event) {
@@ -26,14 +27,27 @@ class ShoppingList extends React.Component {
     }
   }
 
+  handleDelete(event) {
+    this.deleteItem(event.target.value);
+  }
+
   addItem(item) {
-    let newItem = {
-      key: Date.now(),
-      text: item
-    };
+    let newList = Object.assign({}, this.state.list, {[Date.now()]: item});
 
     this.setState({
-      list: this.state.list.concat(newItem)
+      list: newList
+    });
+  }
+
+  deleteItem(key) {
+    let newList = Object.assign({}, this.state.list);
+
+    if (newList.hasOwnProperty(key)) {
+      delete newList[key];
+    }
+
+    this.setState({
+      list: newList
     });
   }
 
@@ -41,7 +55,7 @@ class ShoppingList extends React.Component {
       return (
         <div id="shopping-list">
           <ItemEntry handleKeyUp={this.handleKeyUp} />
-          <ItemsList items={this.state.list} />
+          <ItemsList items={this.state.list} handleDelete={this.handleDelete} />
         </div>
       );
   }
@@ -63,8 +77,13 @@ class ItemsList extends React.Component {
       <div id="items">
         <ol>
           {
-            this.props.items.map(i => {
-              return <li className="item" key={i['key']}>{i['text']}</li>;
+            Object.entries(this.props.items).map(i => {
+              return (
+                <li className="item" key={i[0]}>
+                  {i[1]}
+                  <button value={i[0]} onClick={(e) => this.props.handleDelete(e)}>Delete</button>
+                </li>
+              );
             })
           }
         </ol>
