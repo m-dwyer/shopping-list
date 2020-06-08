@@ -22,7 +22,9 @@ class ShoppingList extends React.Component {
 
   handleKeyUp(event) {
     if (event.keyCode === 13) {
-      console.log(event.target.value);
+      this.setState({
+        list: this.state.list.concat(event.target.value)
+      });
     }
   }
 
