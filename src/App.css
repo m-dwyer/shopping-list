@@ -26,8 +26,9 @@
 }
 
 #add-button {
-  background-color: hsl(0, 0%, 10%);
   border-radius: 5px;
+  padding: 8px 10px;
+  margin: 0 15px;
 }
 
 @keyframes textfocus {

@@ -80,7 +80,7 @@ class ItemEntry extends React.Component {
       <div id="item-entry">
         <form onSubmit={(e) => this.props.handleSubmit(e)}>
           <input type="text" placeholder="Item" value={this.props.inputValue} onChange={this.props.handleChange} />
-          <button type="submit" disabled={this.props.inputValue === ""}>+</button>
+          <button id="add-button" type="submit" disabled={this.props.inputValue === ""}>+</button>
         </form>
       </div>
     );
