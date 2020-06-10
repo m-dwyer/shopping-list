@@ -14,11 +14,19 @@ class ShoppingList extends React.Component {
     super(props);
 
     this.state = {
+      inputValue: '',
       list: {}
     };
 
+    this.handleChange = this.handleChange.bind(this);
     this.handleKeyUp = this.handleKeyUp.bind(this);
     this.handleDelete = this.handleDelete.bind(this);
+  }
+
+  handleChange(e) {
+    this.setState({
+      inputValue: e.target.value
+    })
   }
 
   handleKeyUp(event) {
@@ -35,6 +43,7 @@ class ShoppingList extends React.Component {
     let newList = Object.assign({}, this.state.list, {[Date.now()]: item});
 
     this.setState({
+      inputValue: '',
       list: newList
     });
   }
@@ -54,7 +63,7 @@ class ShoppingList extends React.Component {
   render() {
       return (
         <div id="shopping-list">
-          <ItemEntry handleKeyUp={this.handleKeyUp} />
+          <ItemEntry handleKeyUp={this.handleKeyUp} handleChange={this.handleChange} inputValue={this.state.inputValue} />
           <ItemsList items={this.state.list} handleDelete={this.handleDelete} />
         </div>
       );
@@ -65,7 +74,7 @@ class ItemEntry extends React.Component {
   render() {
     return (
       <div id="item-entry">
-        <input type="text" placeholder="Item" onKeyUp={(e) => this.props.handleKeyUp(e)} />
+        <input type="text" placeholder="Item" value={this.props.inputValue} onKeyUp={(e) => this.props.handleKeyUp(e)} onChange={this.props.handleChange} />
       </div>
     );
   }
