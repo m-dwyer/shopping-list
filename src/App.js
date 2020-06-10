@@ -35,8 +35,8 @@ class ShoppingList extends React.Component {
     }
   }
 
-  handleDelete(event) {
-    this.deleteItem(event.target.value);
+  handleDelete(item) {
+    this.deleteItem(item);
   }
 
   addItem(item) {
@@ -90,7 +90,7 @@ class ItemsList extends React.Component {
               return (
                 <li className="item" key={item[0]}>
                   {item[1]}
-                  <button value={item[0]} onClick={(e) => this.props.handleDelete(e)}>Delete</button>
+                  <button onClick={() => this.props.handleDelete(item[0])}>X</button>
                 </li>
               );
             })
