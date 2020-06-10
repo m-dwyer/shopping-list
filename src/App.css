@@ -49,6 +49,8 @@
   padding: 10px;
   border-radius: 5px;
   font-size: 18px;
+  display: flex;
+  justify-content: space-between;
 }
 
 .item-delete {
