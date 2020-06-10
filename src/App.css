@@ -1,13 +1,22 @@
 .app {
   border-color: black;
   border: solid 1px black;
-  padding: 10px 100px;
+  padding: 10px 25px;
 }
 
-.item:nth-child(1) {
+.item-entry {
+  display: flex;
+}
+
+.item-entry input {
+  flex: 2;
+  margin: 0px;
+}
+
+.item:nth-child(odd) {
   background-color:hsl(0, 0%, 100%);
 }
 
-.item:nth-child(2) {
-  background-color: hsl(0, 0%, 90%);
+.item:nth-child(even) {
+  background-color: hsl(0, 0%, 80%);
 }
