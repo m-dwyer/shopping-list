@@ -18,9 +18,15 @@ class ShoppingList extends React.Component {
       list: {}
     };
 
+    this.handleSubmit = this.handleSubmit.bind(this);
     this.handleChange = this.handleChange.bind(this);
-    this.handleKeyUp = this.handleKeyUp.bind(this);
     this.handleDelete = this.handleDelete.bind(this);
+  }
+
+  handleSubmit(e) {
+    console.log("handleSubmit: ", e);
+    this.addItem();
+    e.preventDefault();
   }
 
   handleChange(e) {
@@ -29,18 +35,12 @@ class ShoppingList extends React.Component {
     })
   }
 
-  handleKeyUp(event) {
-    if (event.keyCode === 13) {
-      this.addItem(event.target.value);
-    }
-  }
-
   handleDelete(item) {
     this.deleteItem(item);
   }
 
-  addItem(item) {
-    let newList = Object.assign({}, this.state.list, {[Date.now()]: item});
+  addItem() {
+    let newList = Object.assign({}, this.state.list, {[Date.now()]: this.state.inputValue});
 
     this.setState({
       inputValue: '',
@@ -63,7 +63,11 @@ class ShoppingList extends React.Component {
   render() {
       return (
         <div id="shopping-list">
-          <ItemEntry handleKeyUp={this.handleKeyUp} handleChange={this.handleChange} inputValue={this.state.inputValue} />
+          <ItemEntry
+            handleChange={this.handleChange}
+            handleSubmit={this.handleSubmit}
+            inputValue={this.state.inputValue}
+          />
           <ItemsList items={this.state.list} handleDelete={this.handleDelete} />
         </div>
       );
@@ -74,7 +78,10 @@ class ItemEntry extends React.Component {
   render() {
     return (
       <div id="item-entry">
-        <input type="text" placeholder="Item" value={this.props.inputValue} onKeyUp={(e) => this.props.handleKeyUp(e)} onChange={this.props.handleChange} />
+        <form onSubmit={(e) => this.props.handleSubmit(e)}>
+          <input type="text" placeholder="Item" value={this.props.inputValue} onChange={this.props.handleChange} />
+          <button type="submit" disabled={this.props.inputValue === ""}>+</button>
+        </form>
       </div>
     );
   }
