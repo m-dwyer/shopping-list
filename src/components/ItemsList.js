@@ -6,11 +6,11 @@ class ItemsList extends React.Component {
         <div id="items">
           <ol>
             {
-              Object.entries(this.props.items).map((item, idx) => {
+              this.props.items.map(item => {
                 return (
-                  <li className="item" key={item[0]}>
-                    <span>{item[1]}</span>
-                    <button className="item-delete" onClick={() => this.props.handleDelete(item[0])}>X</button>
+                  <li className="item" key={item.key}>
+                    <span>{item.value}</span>
+                    <button className="item-delete" onClick={() => this.props.handleDelete(item.key)}>X</button>
                   </li>
                 );
               })
