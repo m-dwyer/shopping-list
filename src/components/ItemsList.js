@@ -2,7 +2,6 @@ import React from 'react';
 
 class ItemsList extends React.PureComponent {
     render() {
-      console.log("ARGH");
       return (
         <div id="items">
           <ol>
