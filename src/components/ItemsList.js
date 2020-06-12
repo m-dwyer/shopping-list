@@ -1,6 +1,10 @@
 import React from 'react';
 
 class ItemsList extends React.Component {
+  shouldComponentUpdate(nextProps, nextState) {
+    return nextProps.items !== this.props.items;
+  }
+
     render() {
       return (
         <div id="items">
