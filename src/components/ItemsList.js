@@ -1,11 +1,8 @@
 import React from 'react';
 
-class ItemsList extends React.Component {
-  shouldComponentUpdate(nextProps, nextState) {
-    return nextProps.items !== this.props.items;
-  }
-
+class ItemsList extends React.PureComponent {
     render() {
+      console.log("ARGH");
       return (
         <div id="items">
           <ol>
